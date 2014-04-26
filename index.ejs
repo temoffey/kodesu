@@ -5,14 +5,11 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
 		<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/monokai_sublime.min.css">
 		<link rel="stylesheet" href="/style.css">
-		<!--[if IE]>
-			<link rel="stylesheet" href="/ie.css">
-		<![endif]-->
 		<title>Share Code .beta</title>
 	</head>
 	<body>
 		<pre><code id="codeView"></code></pre>
-		<textarea id="codeEdit" spellcheck="false"><%=code%></textarea>
+		<textarea id="codeEdit" spellcheck="false" autofocus><%=code%></textarea>
 		<pre class="codeCaret"><span class="editCaret" id="editCaret"></span><span class="Caret"></span></pre>
 		<% for (var s in carets) { %>
 		<pre class="codeCaret"><span class="editCaret" id="editCaret-<%=carets[s].id%>"><%=code.substring(0, carets[s].pos)%></span><span class="Caret Caret-<%=Math.floor(Math.random()*5+1)%>"></span></pre>
