@@ -65,26 +65,16 @@ pre #codeView span.hljs-class {
 }
 
 .Caret {
+	opacity: 1;
 	width: 1px;
 	height: 15px;
-	opacity: 1;
 	display: inline-block;
 	border-left: 1px solid white;
-	animation-name: caret;
-	-o-animation-name: caret;
-	-ms-animation-name: caret;
-	-moz-animation-name: caret;
-	-webkit-animation-name: caret;
-	animation-duration: 1s;
-	-o-animation-duration: 1s;
-	-ms-animation-duration: 1s;
-	-moz-animation-duration: 1s;
-	-webkit-animation-duration: 1s;
-	animation-iteration-count: infinite;
-	-o-animation-iteration-count: infinite;
-	-ms-animation-iteration-count: infinite;
-	-moz-animation-iteration-count: infinite;
-	-webkit-animation-iteration-count: infinite;
+	animation: caret 1s linear 0s infinite normal;
+	-o-animation: caret 1s linear 0s infinite normal;
+	-ms-animation: caret 1s linear 0s infinite normal;
+	-moz-animation: caret 1s linear 0s infinite normal;
+	-webkit-animation: caret 1s linear 0s infinite normal;
 }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {		/* ONLY IE10-11 */
@@ -107,6 +97,26 @@ pre #codeView span.hljs-class {
 
 noindex:-o-prefocus,.Caret {													/* ONLY OPERA */
 	border-left: none;
+}
+
+.Caret-1 {
+	border-left: 1px solid #66d9ef;
+}
+
+.Caret-2 {
+	border-left: 1px solid #f92672;
+}
+
+.Caret-3 {
+	border-left: 1px solid #a6e22e;
+}
+
+.Caret-4 {
+	border-left: 1px solid #e6db74;
+}
+
+.Caret-5 {
+	border-left: 1px solid #ae81ff;
 }
 
 @keyframes caret {
@@ -182,24 +192,4 @@ noindex:-o-prefocus,.Caret {													/* ONLY OPERA */
 	100% {
 		opacity: 1;
 	}
-}
-
-.Caret-1 {
-	border-left: 1px solid #66d9ef;
-}
-
-.Caret-2 {
-	border-left: 1px solid #f92672;
-}
-
-.Caret-3 {
-	border-left: 1px solid #a6e22e;
-}
-
-.Caret-4 {
-	border-left: 1px solid #e6db74;
-}
-
-.Caret-5 {
-	border-left: 1px solid #ae81ff;
 }
