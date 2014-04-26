@@ -1,0 +1,14 @@
+{
+    "name": "temoffey-code",
+    "version" : "0.0.1",
+    "description": "MMO Code Editor",
+    "author": "Timur Yakhin <temofffey@gmail.com>",
+    "dependencies": {
+	"ejs": "*",
+        "socket.io": "*",
+        "express": "3.x.x"
+    },
+    "scripts": {
+        "start": "server.js"
+    }
+}

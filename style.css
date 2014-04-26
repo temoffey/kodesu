@@ -1,0 +1,194 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+html,
+body {
+	min-height: 100%;
+	background-color: #23241F;
+}
+
+pre,
+#codeView {
+	font-size: 13px;
+	min-width: 100%;
+	min-height: 100%;
+}
+
+pre #codeView span.hljs-class {
+	line-height: 13px;
+}
+
+#codeEdit {
+	top: 0;
+	left: 0;
+	z-index: 5;
+	border: none;
+	display: block;
+	padding: 0.5em;
+	font-size: 13px;
+	min-width: 100%;
+	overflow: hidden;
+	min-height: 100%;
+	background: none;
+	color: rgba(0, 0, 0, 0);
+	position: absolute;
+}
+
+#codeEdit:focus {
+	border: none;
+	outline: none;
+	box-shadow: none;
+}
+
+.codeCaret {
+	top: 0;
+	left: 0;
+	z-index: 4;
+	border: none;
+	display: block;
+	padding: 0.5em;
+	min-width: 100%;
+	font-size: 13px;
+	overflow: hidden;
+	min-height: 100%;
+	background: none;
+	color: transparent;
+	position: absolute;
+}
+
+.editCaretCode {
+	font-size: 13px;
+	background: none;
+	color: transparent;
+}
+
+.Caret {
+	width: 1px;
+	height: 15px;
+	display: inline-block;
+	animation-name: caret;
+	background-color: white;
+	-o-animation-name: caret;
+	-ms-animation-name: caret;
+	-moz-animation-name: caret;
+	-webkit-animation-name: caret;
+	animation-duration: 1s;
+	-o-animation-duration: 1s;
+	-ms-animation-duration: 1s;
+	-moz-animation-duration: 1s;
+	-webkit-animation-duration: 1s;
+	animation-iteration-count: infinite;
+	-o-animation-iteration-count: infinite;
+	-ms-animation-iteration-count: infinite;
+	-moz-animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
+}
+
+.Caret {
+	background= none;			/* ONLY IE */
+	background: none\0/;		/* ONLY IE8 */
+	background: none\9;			/* ONLY IE9 */
+	background: none\10;		/* ONLY IE10 */
+	background: none\11;		/* ONLY IE11 */
+}
+
+noindex:-o-prefocus,.Caret {	/* ONLY OPERA */
+	background: none;
+}
+
+@keyframes caret {
+	0% {
+		opacity: 0.1;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	51% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-o-keyframes caret {
+	0% {
+		opacity: 0.1;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	51% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-ms-keyframes caret {
+	0% {
+		opacity: 0.1;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	51% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes caret {
+	0% {
+		opacity: 0.1;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	51% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes caret {
+	0% {
+		opacity: 0.1;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	51% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.Caret-1 {
+	background-color: #66d9ef;
+}
+
+.Caret-2 {
+	background-color: #f92672;
+}
+
+.Caret-3 {
+	background-color: #a6e22e;
+}
+
+.Caret-4 {
+	background-color: #e6db74;
+}
+
+.Caret-5 {
+	background-color: #ae81ff;
+}
