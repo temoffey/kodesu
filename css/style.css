@@ -1,0 +1,372 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+html,
+body {
+	min-height: 100%;
+	transition: background-color 1s ease 0s;
+	-o-transition: background-color 1s ease 0s;
+	-ms-transition: background-color 1s ease 0s;
+	-moz-transition: background-color 1s ease 0s;
+	-webkit-transition: background-color 1s ease 0s;
+}
+
+body.black {
+	background-color: #23241f;
+}
+
+body.white {
+	background-color: white;
+}
+
+pre,
+#codeView {
+	display: block;
+	font-size: 13px;
+	min-width: 100%;
+	min-height: 100%;
+	transition: color 1s ease 0s, background-color 1s ease 0s;
+	-o-transition: color 1s ease 0s, background-color 1s ease 0s;
+	-ms-transition: color 1s ease 0s, background-color 1s ease 0s;
+	-moz-transition: color 1s ease 0s, background-color 1s ease 0s;
+	-webkit-transition: color 1s ease 0s, background-color 1s ease 0s;
+}
+
+#codeView span.hljs-class {
+	line-height: 13px;
+}
+
+#codeEdit {
+	top: 0;
+	left: 0;
+	z-index: 5;
+	opacity: 0;
+	border: none;
+	display: block;
+	padding: 0.5em;
+	font-size: 13px;
+	min-width: 100%;
+	overflow: hidden;
+	min-height: 100%;
+	background: none;
+	color: rgba(0, 0, 0, 0);
+	position: absolute;
+}
+
+#codeEdit:focus {
+	border: none;
+	outline: none;
+	box-shadow: none;
+}
+
+.codeCaret {
+	top: 0;
+	left: 0;
+	z-index: 4;
+	border: none;
+	display: block;
+	padding: 0.5em;
+	min-width: 100%;
+	font-size: 13px;
+	overflow: hidden;
+	min-height: 100%;
+	background: none;
+	color: transparent;
+	position: absolute;
+}
+
+.editCaretCode {
+	font-size: 13px;
+	background: none;
+	color: transparent;
+}
+
+.black .Caret {
+	background-color: rgba(255,255,255,0.2);
+}
+
+.white .Caret {
+	background-color: rgba(96,96,96,0.2);
+	transition: background-color 1s ease 0s;
+	-o-transition: background-color 1s ease 0s;
+	-ms-transition: background-color 1s ease 0s;
+	-moz-transition: background-color 1s ease 0s;
+	-webkit-transition: background-color 1s ease 0s;
+}
+
+.Caret:before {
+	opacity: 1;
+	content: "";
+	border-left: 1px solid white;
+	transition: border-color 1s ease 0s;
+	-o-transition: border-color 1s ease 0s;
+	-ms-transition: border-color 1s ease 0s;
+	-moz-transition: border-color 1s ease 0s;
+	-webkit-transition: border-color 1s ease 0s;
+	animation: caret 1s ease 0s infinite normal;
+	-o-animation: caret 1s ease 0s infinite normal;
+	-ms-animation: caret 1s ease 0s infinite normal;
+	-moz-animation: caret 1s ease 0s infinite normal;
+	-webkit-animation: caret 1s ease 0s infinite normal;
+}
+
+.black .Caret:before {
+	border-left: 1px solid white;
+}
+
+.white .Caret:before {
+	border-left: 1px solid black;
+}
+
+
+@keyframes caret {
+	0% {
+		opacity: 0.1;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	51% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-o-keyframes caret {
+	0% {
+		opacity: 0.1;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	51% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-ms-keyframes caret {
+	0% {
+		opacity: 0.1;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	51% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes caret {
+	0% {
+		opacity: 0.1;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	51% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes caret {
+	0% {
+		opacity: 0.1;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	51% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {		/* ONLY IE10-11 */
+	.Caret:before {
+		border-left: none;
+	}
+}
+
+@media screen and (min-width:0\0) {					/* ONLY IE9-11 */
+	.Caret:before {
+		border-left: none;
+	}
+}
+
+/*
+@media (-o-min-device-pixel-ratio: 1/100) {			/* ONLY OPERA12 * /
+	.Caret:before {
+		border-left: none;
+	}
+}
+
+noindex:-o-prefocus,								/* ONLY OPERA * /
+.Caret:before {
+	border-left: none;
+}
+*/
+
+.Caret-1 {
+	background-color: rgba(102,217,239,0.2);
+}
+
+.Caret-1:before {
+	border-left: 1px solid #66d9ef;
+}
+
+.Caret-2 {
+	background-color: rgba(249,38,114,0.2);
+}
+
+.Caret-2:before {
+	border-left: 1px solid #f92672;
+}
+
+.Caret-3 {
+	background-color: rgba(166,226,46,0.2);
+}
+
+.Caret-3:before {
+	border-left: 1px solid #a6e22e;
+}
+
+.Caret-4 {
+	background-color: rgba(230,219,116,0.2);
+}
+
+.Caret-4:before {
+	border-left: 1px solid #e6db74;
+}
+
+.Caret-5 {
+	background-color: rgba(174,129,255,0.2);
+}
+
+.Caret-5:before {
+	border-left: 1px solid #ae81ff;
+}
+
+ul#links {
+	top: 0;
+	right: 0;
+	width: 64px;
+	z-index: 10;
+	padding: 0 1em;
+	position: fixed;
+}
+
+ul#links li {
+	opacity: 0.5;
+	height: 64px;
+	display: block;
+	padding: 1em 0;
+	transition: opacity 0.5s ease 0s;
+	-o-transition: opacity 0.5s ease 0s;
+	-ms-transition: opacity 0.5s ease 0s;
+	-moz-transition: opacity 0.5s ease 0s;
+	-webkit-transition: opacity 0.5s ease 0s;
+}
+
+ul#links li:hover {
+	opacity: 1;
+}
+
+ul#links a#plus {
+	background-image: url("/img/plus.png");
+}
+
+ul#links a#fork {
+	background-image: url("/img/fork.png");
+}
+
+ul#links a#share {
+	background-image: url("/img/share.png");
+}
+
+ul#links a#close {
+	background-image: url("/img/close.png");
+}
+
+
+ul#links li a {
+	width: 100%;
+	height: 100%;
+	display: block;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+ul#themes {
+	right: 0;
+	bottom: 0;
+	width: 64px;
+	z-index: 10;
+	height: 64px;
+	padding: 1em;
+	position: fixed;
+}
+
+ul#themes li {
+	top: 16px;
+	opacity: 0;
+	width: 64px;
+	z-index: -1;
+	height: 64px;
+	display: block;
+	position: absolute;
+	transition: opacity 0.5s ease 0s;
+	-o-transition: opacity 0.5s ease 0s;
+	-ms-transition: opacity 0.5s ease 0s;
+	-moz-transition: opacity 0.5s ease 0s;
+	-webkit-transition: opacity 0.5s ease 0s;
+}
+
+.white ul#themes li.white,
+.black ul#themes li.black {
+	z-index: 5;
+	opacity: 0.5;
+}
+
+.white ul#themes li.white:hover,
+.black ul#themes li.black:hover {
+	opacity: 1;
+}
+
+ul#themes a#white_link {
+	background-image: url("/img/white.png");
+}
+
+ul#themes a#black_link {
+	background-image: url("/img/black.png");
+}
+
+ul#themes li a {
+	width: 100%;
+	height: 100%;
+	display: block;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	transition: opacity 0.5s ease 0s;
+	-o-transition: opacity 0.5s ease 0s;
+	-ms-transition: opacity 0.5s ease 0s;
+	-moz-transition: opacity 0.5s ease 0s;
+	-webkit-transition: opacity 0.5s ease 0s;
+}

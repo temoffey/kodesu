@@ -2,20 +2,31 @@
 <html lang="ru">
 	<head>
 		<meta charset="utf-8" />
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
-		<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/monokai_sublime.min.css">
-		<link rel="stylesheet" href="/style.css">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" id="white_style" href="/css/tomorrow.min.css">
+		<link rel="stylesheet" id="black_style" href="/css/monokai_sublime.min.css">
+		<link rel="stylesheet" href="/css/style.css">
 		<title>Share Code .beta</title>
 	</head>
-	<body>
-		<pre><code id="codeView"></code></pre>
-		<textarea id="codeEdit" spellcheck="false" autofocus><%=code%></textarea>
-		<pre class="codeCaret"><span class="editCaret" id="editCaret"></span><span class="Caret"></span></pre>
+	<body class="black">
+		<pre class="code"><code id="codeView" class="hljs"></code></pre>
+		<textarea id="codeEdit" spellcheck="false" wrap="off" autofocus><%=code%></textarea>
+		<pre class="codeCaret"><span class="editCaret" id="editCaret"></span><span class="Caret" id="Caret"></span></pre>
 		<% for (var s in carets) { %>
-		<pre class="codeCaret"><span class="editCaret" id="editCaret-<%=carets[s].id%>"><%=code.substring(0, carets[s].pos)%></span><span class="Caret Caret-<%=Math.floor(Math.random()*5+1)%>"></span></pre>
+		<pre class="codeCaret"><span class="editCaret" id="editCaret-<%=s%>"><%=code.substring(0, carets[s].begin)%></span><span class="Caret Caret-<%=Math.floor(Math.random()*5+1)%>" id="Caret-<%=s%>"><%=code.substring(carets[s].begin, carets[s].end)%></span></pre>
 		<% } %>
-		<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
-		<script src="/socket.io/socket.io.js"></script>
-		<script src="/client.js?v=2"></script>
+		<ul id="links">
+			<li><a id="plus" href="/" target="_blank"></a></li>
+			<li><a id="fork" href="/<%=id%>/fork" target="_blank"></a></li>
+			<li><a id="share" href="/<%=id%>/" target="_blank"></a></li>
+			<li><a id="close" href="/<%=id%>/close"></a></li>
+		</ul>
+		<ul id="themes">
+			<li class="white"><a id="white_link" href="#white"></a></li>
+			<li class="black"><a id="black_link" href="#black"></a></li>
+		</ul>
+		<script src="/js/highlight.min.js"></script>
+		<script src="/js/socket.io.js"></script>
+		<script src="/js/client.js"></script>
 	</body>
 </html>
