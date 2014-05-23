@@ -1,0 +1,17 @@
+{
+	"web": {
+		"host": "share-code.ru",
+		"port": 8040
+	},
+	"db": {
+		"host": "localhost",
+        "port": 3306,
+		"user": "sharecode",
+		"password": "481516",
+		"database": "sharecode"
+	},
+	"oauth": {
+		"id": "",
+		"secret": ""
+	}
+}

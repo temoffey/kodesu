@@ -2,6 +2,7 @@ var Caret = document.getElementById("Caret")
 var codeEdit = document.getElementById("codeEdit")
 var codeView = document.getElementById("codeView")
 var editCaret = document.getElementById("editCaret")
+var tmp = {}
 var str = codeEdit.value.length
 var carets = []
 var sessionid = ""
@@ -38,7 +39,8 @@ var renderCarets = function() {
 	}
 }
 
-var handler = function() {
+
+/*var handler = function() {
 
 	if (str != codeEdit.value.length) {
 		for (var s in carets) {
@@ -72,7 +74,8 @@ var handler = function() {
 		socketCode.emit("position", {caret: carets[sessionid]} )
 	}
 
-}
+}*/
+
 
 var socketCode = io.connect("http://code.temoffey.ru:8040"+window.location.pathname)
 
@@ -82,7 +85,7 @@ socketCode.on("connect", function() {
 	Caret.id = "Caret-"+sessionid
 	editCaret.id = "editCaret-"+sessionid
 	carets[sessionid] = {begin: 0, end: 0}
-	setInterval(handler, 40)
+	//setInterval(handler, 40)
 
 	socketCode.on("message", function (data) {
 		for (var s in carets) {
@@ -111,6 +114,15 @@ socketCode.on("connect", function() {
 		renderCarets()
 	})
 
+	socketCode.on("update", function (data) {
+		codeEdit.value = codeEdit.value.substring(0, data.caret.begin) + data.str + codeEdit.value.substring(data.caret.end, codeEdit.value.length)
+		str = codeEdit.value.length
+		codeEdit.selectionEnd = carets[sessionid].begin
+		codeEdit.selectionStart = carets[sessionid].end
+		renderStr()
+		renderCarets()
+	})
+
 	socketCode.on("position", function (data) {
 		carets[data.id] = data.caret
 		renderCaret(data.id)
@@ -127,5 +139,97 @@ socketCode.on("connect", function() {
 	})
 
 })
+
+codeEdit.onkeypress = function(event) {
+	if (!event.ctrlKey && !event.altKey) {
+		socketCode.emit("update", {str: String.fromCharCode(event.keyCode), caret: carets[sessionid]})
+		setTimeout(function() {
+			renderStr()
+			renderCarets()
+		},0)
+	}
+}
+
+codeEdit.onkeydown = function(event) {
+	if (event.keyCode == 8) {
+		tmp = carets[sessionid]
+		if (tmp.begin == tmp.end) tmp.begin -= 1
+		socketCode.emit("update", {str: "", caret: carets[sessionid]})
+		setTimeout(function() {
+			carets[sessionid].begin = codeEdit.selectionStart
+			carets[sessionid].end = codeEdit.selectionEnd
+			renderStr()
+			renderCarets()
+		},0)
+	}
+	if (event.keyCode == 9) {
+		socketCode.emit("update", {str: "\t", caret: carets[sessionid]})
+		codeEdit.value = codeEdit.value.substring(0, codeEdit.selectionStart) + "\t" + codeEdit.value.substring(odeEdit.selectionEnd, codeEdit.value.length)
+		codeEdit.selectionStart = carets[sessionid].begin + 1
+		codeEdit.selectionEnd = carets[sessionid].begin + 1
+		carets[sessionid].begin = carets[sessionid].begin +1
+		carets[sessionid].end = carets[sessionid].begin
+		renderStr()
+		renderCarets()
+	}
+	if (event.keyCode == 46) {
+		tmp = carets[sessionid]
+		if (tmp.begin == tmp.end) tmp.end += 1
+		socketCode.emit("update", {str: "", caret: carets[sessionid]})
+		setTimeout(function() {
+			carets[sessionid].begin = codeEdit.selectionStart
+			carets[sessionid].end = codeEdit.selectionEnd
+			renderStr()
+			renderCarets()
+		},0)
+	}
+	if ((32 < event.keyCode)&&(event.keyCode < 41)) {
+		setTimeout(function() {
+			carets[sessionid].begin = codeEdit.selectionStart
+			carets[sessionid].end = codeEdit.selectionEnd
+			renderCaret(sessionid)
+			socketCode.emit("position", {caret: carets[sessionid]})
+		},0)
+	}
+}
+
+codeEdit.oncut = function(event) {
+	socketCode.emit("update", {str: "", caret: carets[sessionid]})
+	setTimeout(function() {
+		carets[sessionid].begin = codeEdit.selectionStart
+		carets[sessionid].end = codeEdit.selectionEnd
+		renderStr()
+		renderCarets()
+	},0)
+}
+
+codeEdit.onpaste = function(event) {
+	//alert(event.clipboardData.getData("text"))
+	tmp = {begin: carets[sessionid].begin, end: carets[sessionid].end}
+	setTimeout(function() {
+		socketCode.emit("update", {str: codeEdit.value.substring(tmp.begin, carets[sessionid].begin), caret: tmp})
+		carets[sessionid].begin = codeEdit.selectionStart
+		carets[sessionid].end = codeEdit.selectionEnd
+		renderStr()
+		renderCarets()
+	},0)
+}
+
+codeEdit.onclick = function(event) {
+	carets[sessionid].begin = codeEdit.selectionStart
+	carets[sessionid].end = codeEdit.selectionEnd
+	socketCode.emit("position", {caret: carets[sessionid]})
+	renderCaret(sessionid)
+}
+codeEdit.onmousemove = function(event) {
+	if (event.which==1) {
+		if ((carets[sessionid].end != codeEdit.selectionEnd)||(carets[sessionid].begin != codeEdit.selectionStart)) {
+			carets[sessionid].begin = codeEdit.selectionStart
+			carets[sessionid].end = codeEdit.selectionEnd
+			socketCode.emit("position", {caret: carets[sessionid]})
+			renderCaret(sessionid)
+		}
+	}
+}
 
 renderStr()

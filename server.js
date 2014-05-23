@@ -2,11 +2,10 @@ var express = require("express"),
 	app = express(),
 	http = require("http"),
 	server = http.createServer(app),
-	io = require("socket.io").listen(server)
-
-var rooms = []
-
-server.listen(8040)
+	io = require("socket.io").listen(server),
+	config = require('./config'),
+	mysql = require('mysql'),
+	connection = mysql.createConnection(config.db)
 
 var createRoom = function(id) {
 
@@ -21,7 +20,17 @@ var createRoom = function(id) {
 			rooms[id].str = data.str
 			rooms[id].carets[socket.id] = data.caret
 			data.id = socket.id
+			connection.query("UPDATE rooms SET str=? WHERE id=?", [rooms[id].str, id])
 			socket.broadcast.emit("message", data)
+		})
+
+		socket.on("update", function (data) {
+			rooms[id].str = rooms[id].str.substring(0, data.caret.begin) + data.str + rooms[id].str.substring(data.caret.end, rooms[id].str.length)
+			rooms[id].carets[socket.id] = data.caret.begin
+			if (data.str) rooms[id].carets[socket.id] += data.str.length
+			data.id = socket.id
+			connection.query("UPDATE rooms SET str=? WHERE id=?", [rooms[id].str, id])
+			socket.broadcast.emit("update", data)
 		})
 
 		socket.on("position", function (data) {
@@ -43,6 +52,17 @@ var createRoom = function(id) {
 
 }
 
+var rooms = []
+
+connection.query("SELECT * FROM rooms", function(err, rows, fields) {
+	for (var i in rows) {
+		createRoom(rows[i].id)
+		rooms[rows[i].id].str = rows[i].str
+	}
+})
+
+server.listen(config.web.port)
+
 app.use(express.static(__dirname + "/"))
 
 app.set("views", __dirname + "/")
@@ -63,12 +83,14 @@ app.get("/:id?/:method?", function (req, res, next) {
 					res.redirect('/'+id)
 					createRoom(id)
 					rooms[id].str = rooms[req.params.id].str
+					connection.query("INSERT INTO rooms VALUES (?, ?)", [id, rooms[id].str])
 
 				}
 				if (req.params.method == "close") {
 
 					res.redirect('/about')
-					setTimeout(function() { delete rooms[req.params.id] }, 2000)		// Fix this, create method "leave"
+					setTimeout(function() { delete rooms[req.params.id] }, 2000)			// Fix this, create method "close"
+					//connection.query("DELETE FROM rooms WHERE id=?", [req.params.id])		// Wait method "close"
 
 				}
 			} else {
@@ -79,6 +101,7 @@ app.get("/:id?/:method?", function (req, res, next) {
 		} else {
 
 			createRoom(req.params.id)
+			connection.query("INSERT INTO rooms VALUES (?, ?)", [req.params.id, rooms[req.params.id].str])
 			res.render("index.ejs", {id: req.params.id, code: rooms[req.params.id].str, carets: rooms[req.params.id].carets})
 
 		}
