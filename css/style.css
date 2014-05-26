@@ -227,43 +227,43 @@ noindex:-o-prefocus,								/* ONLY OPERA * /
 */
 
 .Caret-1 {
-	background-color: rgba(102,217,239,0.2);
+	background-color: rgba(102,217,239,0.2) !important;
 }
 
 .Caret-1:before {
-	border-left: 1px solid #66d9ef;
+	border-left: 1px solid #66d9ef !important;
 }
 
 .Caret-2 {
-	background-color: rgba(249,38,114,0.2);
+	background-color: rgba(249,38,114,0.2) !important;
 }
 
 .Caret-2:before {
-	border-left: 1px solid #f92672;
+	border-left: 1px solid #f92672 !important;
 }
 
 .Caret-3 {
-	background-color: rgba(166,226,46,0.2);
+	background-color: rgba(166,226,46,0.2) !important;
 }
 
 .Caret-3:before {
-	border-left: 1px solid #a6e22e;
+	border-left: 1px solid #a6e22e !important;
 }
 
 .Caret-4 {
-	background-color: rgba(230,219,116,0.2);
+	background-color: rgba(230,219,116,0.2) !important;
 }
 
 .Caret-4:before {
-	border-left: 1px solid #e6db74;
+	border-left: 1px solid #e6db74 !important;
 }
 
 .Caret-5 {
-	background-color: rgba(174,129,255,0.2);
+	background-color: rgba(174,129,255,0.2) !important;
 }
 
 .Caret-5:before {
-	border-left: 1px solid #ae81ff;
+	border-left: 1px solid #ae81ff !important;
 }
 
 ul#links {
