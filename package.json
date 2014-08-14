@@ -9,6 +9,6 @@
         "express": "3.x.x"
     },
     "scripts": {
-        "start": "server.js"
+        "start": "nohup node server.js > log/info.log 2> log/error.log &"
     }
 }
