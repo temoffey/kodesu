@@ -55,8 +55,9 @@ pre,
 	overflow: hidden;
 	min-height: 100%;
 	background: none;
-	color: rgba(0, 0, 0, 0);
 	position: absolute;
+	font-family: monospace;
+	color: rgba(0, 0, 0, 0);
 }
 
 #codeEdit:focus {
