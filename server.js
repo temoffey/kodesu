@@ -1,8 +1,8 @@
 var express = require("express"),
 	app = express(),
 	http = require("http"),
-	server = http.createServer(app),
-	io = require("socket.io").listen(server)
+	server = http.Server(app),
+	io = require("socket.io")(server)
 
 var rooms = []
 
@@ -47,7 +47,7 @@ app.use(express.static(__dirname + "/"))
 
 app.set("views", __dirname + "/")
 
-app.engine("ejs", require("ejs").renderFile)
+app.set("view engine", "ejs")
 
 app.get("/:id?/:method?", function (req, res, next) {
 
@@ -95,5 +95,3 @@ app.get("/:id?/:method?", function (req, res, next) {
 	}
 
 })
-
-io.set("log level", 1)

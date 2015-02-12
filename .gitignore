@@ -1,6 +1,9 @@
 # Кэш миниатюр изображений Windows
 Thumbs.db
 
+# Кэш миниатюр изображений MACOS
+.DS_Store
+
 # Кэш ZIP архивов MACOS
 __MACOSX
 

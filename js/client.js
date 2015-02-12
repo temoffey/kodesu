@@ -74,11 +74,11 @@ var handler = function() {
 
 }
 
-var socketCode = io.connect("http://code.temoffey.ru:8040"+window.location.pathname)
+var socketCode = io(window.location.href)
 
 socketCode.on("connect", function() {
 
-	sessionid = socketCode.socket.sessionid
+	sessionid = socketCode.json.id
 	Caret.id = "Caret-"+sessionid
 	editCaret.id = "editCaret-"+sessionid
 	carets[sessionid] = {begin: 0, end: 0}

@@ -4,9 +4,9 @@
     "description": "MMO Code Editor",
     "author": "Timur Yakhin <temofffey@gmail.com>",
     "dependencies": {
-	"ejs": "*",
-        "socket.io": "0.9.x",
-        "express": "3.x.x"
+    "ejs": "*",
+        "socket.io": "1.x.x",
+        "express": "4.x.x"
     },
     "scripts": {
         "start": "nohup node server.js > log/info.log 2> log/error.log &"
