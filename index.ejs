@@ -14,9 +14,9 @@
 	<body class="black">
 		<pre class="code"><code id="codeView" class="hljs"></code></pre>
 		<textarea id="codeEdit" spellcheck="false" wrap="off" autofocus><%=code%></textarea>
-		<pre class="codeCaret"><span class="editCaret" id="editCaret"></span><span class="Caret" id="Caret"></span></pre>
+		<pre class="codeCaret"><span class="editCaret" id="editCaret"></span><span class="Caret" id="Caret"></span><span class="nameCaret"></span></pre>
 		<% for (var s in carets) { %>
-		<pre class="codeCaret"><span class="editCaret" id="editCaret-<%=s%>"><%=code.substring(0, carets[s].begin)%></span><span class="Caret Caret-<%=Math.floor(Math.random()*5+1)%>" id="Caret-<%=s%>"><%=code.substring(carets[s].begin, carets[s].end)%></span></pre>
+		<pre class="codeCaret"><span class="editCaret" id="editCaret-<%=s%>"><%=code.substring(0, carets[s].begin)%></span><span class="Caret Caret-<%=Math.floor(Math.random()*5+1)%>" id="Caret-<%=s%>"><%=code.substring(carets[s].begin, carets[s].end)%></span><span class="nameCaret"></span></pre>
 		<% } %>
 		<ul id="links">
 			<li><a id="plus" href="/" target="_blank"></a></li>

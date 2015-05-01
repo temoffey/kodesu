@@ -27,6 +27,7 @@ pre,
 	font-size: 13px;
 	min-width: 100%;
 	min-height: 100%;
+	box-sizing: border-box;
 	font-family: "Monospace", "Menlo", "Consolas", monospace;
 }
 
@@ -57,6 +58,7 @@ pre,
 	min-height: 100%;
 	background: none;
 	position: absolute;
+	box-sizing: border-box;
 	color: rgba(0, 0, 0, 0);
 	font-family: "Monospace", "Menlo", "Consolas", monospace;
 }
@@ -81,12 +83,14 @@ pre,
 	background: none;
 	color: transparent;
 	position: absolute;
+	box-sizing: border-box;
 }
 
 .editCaretCode {
 	font-size: 13px;
 	background: none;
 	color: transparent;
+	box-sizing: border-box;
 }
 
 .black .Caret {
@@ -116,6 +120,32 @@ pre,
 	-ms-animation: caret 1s ease 0s infinite normal;
 	-moz-animation: caret 1s ease 0s infinite normal;
 	-webkit-animation: caret 1s ease 0s infinite normal;
+}
+
+.endCaret:before {
+	display: none;
+}
+
+.endCaret:after {
+	opacity: 1;
+	content: "";
+	border-left: 1px solid white;
+	transition: border-color 1s ease 0s;
+	-o-transition: border-color 1s ease 0s;
+	-ms-transition: border-color 1s ease 0s;
+	-moz-transition: border-color 1s ease 0s;
+	-webkit-transition: border-color 1s ease 0s;
+	animation: caret 1s ease 0s infinite normal;
+	-o-animation: caret 1s ease 0s infinite normal;
+	-ms-animation: caret 1s ease 0s infinite normal;
+	-moz-animation: caret 1s ease 0s infinite normal;
+	-webkit-animation: caret 1s ease 0s infinite normal;
+}
+
+.nameCaret {
+	float: right;
+	padding-right: 10px;
+	color: rgba(255,255,255,0.8);
 }
 
 .black .Caret:before {
@@ -232,40 +262,65 @@ noindex:-o-prefocus,								/* ONLY OPERA * /
 	background-color: rgba(102,217,239,0.2) !important;
 }
 
-.Caret-1:before {
+.Caret-1:before,
+.Caret-1:after {
 	border-left: 1px solid #66d9ef !important;
+}
+
+.Caret-1 + .nameCaret {
+	color: rgba(102,217,239,0.8) !important;
 }
 
 .Caret-2 {
 	background-color: rgba(249,38,114,0.2) !important;
 }
 
-.Caret-2:before {
+.Caret-2:before,
+.Caret-2:after {
 	border-left: 1px solid #f92672 !important;
+}
+
+.Caret-2 + .nameCaret {
+	color: rgba(249,38,114,0.8) !important;
 }
 
 .Caret-3 {
 	background-color: rgba(166,226,46,0.2) !important;
 }
 
-.Caret-3:before {
+.Caret-3:before,
+.Caret-3:after {
 	border-left: 1px solid #a6e22e !important;
+}
+
+.Caret-3 + .nameCaret {
+	color: rgba(166,226,46,0.8) !important;
 }
 
 .Caret-4 {
 	background-color: rgba(230,219,116,0.2) !important;
 }
 
-.Caret-4:before {
+.Caret-4:before,
+.Caret-4:after {
 	border-left: 1px solid #e6db74 !important;
+}
+
+.Caret-4 + .nameCaret {
+	color: rgba(230,219,116,0.8) !important;
 }
 
 .Caret-5 {
 	background-color: rgba(174,129,255,0.2) !important;
 }
 
-.Caret-5:before {
+.Caret-5:before,
+.Caret-5:after {
 	border-left: 1px solid #ae81ff !important;
+}
+
+.Caret-5 + .nameCaret {
+	color: rgba(174,129,255,0.8) !important;
 }
 
 ul#links {
